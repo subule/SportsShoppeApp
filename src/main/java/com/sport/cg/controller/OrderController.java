@@ -43,10 +43,10 @@ public class OrderController {
 	}
 
 	@DeleteMapping(path="/deletedOrders/{id}")
-	public ResponseEntity<Orders> removeOrder(@PathVariable long id) {
+	public HttpStatus removeOrder(@PathVariable long id) {
 		LOGGER.info("EOrder removeOrder()");
-		Orders deletedOrder = orderService.removeOrder(id);
-		return new ResponseEntity<Orders>(deletedOrder, HttpStatus.OK);
+		orderService.removeOrder(id);
+		return HttpStatus.OK;
 	}
 
 	@PutMapping(path="/updatedOrders/{id}")
