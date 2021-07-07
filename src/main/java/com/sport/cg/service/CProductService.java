@@ -87,7 +87,7 @@ public class CProductService implements IProductService {
 		List<Product> productSize = iProductRepository.findBySize(size);
 		if (productSize == null)
 		{
-			String sizenotfound = "No products found by the size "+size;
+			//String sizenotfound = "No products found by the size "+size;
 			//throw new ProductsException(sizenotfound);
 		}
 		LOGGER.info("getProductBySize() service has executed");
@@ -101,7 +101,7 @@ public class CProductService implements IProductService {
 		List<Product> productPrice = iProductRepository.findByPrice(price);
 		if (productPrice == null)
 		{
-			String pricenotfound = "No products found by the price "+price;
+			//String pricenotfound = "No products found by the price "+price;
 			//throw new ProductsException(pricenotfound);
 		}
 		LOGGER.info("getProductByPrice() service has executed");
@@ -116,7 +116,7 @@ public class CProductService implements IProductService {
 		List<Product> productColor = iProductRepository.findByColor(color);
 		if (productColor == null)
 		{
-			String colornotfound = "No products found by the color "+color;
+		//	String colornotfound = "No products found by the color "+color;
 		//	throw new ProductsException(colornotfound);
 		}
 		LOGGER.info("getProductByColor() service has executed");
