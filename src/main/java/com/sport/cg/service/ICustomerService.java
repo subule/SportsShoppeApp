@@ -13,6 +13,6 @@ public interface ICustomerService {
 	public Customer addCustomer(Customer customer);
 	public Customer updateCustomer(Customer customer);
 	public Customer getCustomerById(long cusId);
-	public void deleteCustomer(long cusId);
+	public Customer deleteCustomer(long cusId);
 
 }

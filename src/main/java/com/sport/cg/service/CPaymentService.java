@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sport.cg.entity.Payment;
+import com.sport.cg.exception.PaymentNotFoundException;
 import com.sport.cg.repository.IPaymentRepository;
 
 
@@ -30,16 +31,13 @@ public class CPaymentService implements IPaymentService {
 		@Override
 		public Payment removePayment(long paymentId) {
 			LOGGER.info("Called removePayment() method of PaymentService");
-
 			Optional<Payment> searchedPayment = paymentRepository.findById(paymentId);
-			
 			if (searchedPayment.isPresent()) {
 				Payment paymentToDelete = searchedPayment.get();
 				paymentRepository.delete(paymentToDelete);
 				return paymentToDelete;
 			} else {
-				// PaymentNotFoundException
-				return null;
+				throw new PaymentNotFoundException("No Payment Record Found");
 			}
 
 		}
@@ -51,10 +49,8 @@ public class CPaymentService implements IPaymentService {
 			if (searchedPayment.isPresent()) {
 				return paymentRepository.save(payment);
 			} else {
-				//PaymentNotFoundException
-				return null;
+				throw new PaymentNotFoundException("Payment not updated. Payment ID not Found.");
 			}
-
 		}
 
 		@Override
@@ -63,9 +59,9 @@ public class CPaymentService implements IPaymentService {
 			Optional<Payment> searchedPayment = paymentRepository.findById(paymentid);
 			if (searchedPayment.isPresent()) {
 				return searchedPayment.get();
-			} else {
-				//PaymentNotFoundException
-				return null;
+			} 
+			else {
+				throw new PaymentNotFoundException("No record found with the ID");
 			}
 
 		}
@@ -73,7 +69,13 @@ public class CPaymentService implements IPaymentService {
 		@Override
 		public List<Payment> getAllPaymentDetails() {
 			LOGGER.info("Called getAllPaymentDetails() method of PaymentService");
-			return paymentRepository.findAll();
+			List<Payment> payList = paymentRepository.findAll();
+			if(payList.isEmpty()) {
+				throw new PaymentNotFoundException("No Payments Found");
+			}
+			else {
+				return payList;
+			}
 		}
 
 }

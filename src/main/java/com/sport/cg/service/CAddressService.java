@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sport.cg.entity.Address;
+import com.sport.cg.exception.AddressNotFoundException;
 import com.sport.cg.repository.IAddressRepository;
 
 @Service
@@ -18,12 +19,7 @@ public class CAddressService implements IAddressService {
 	
 	public Address addAddress(Address address){
 		LOGGER.info("addAddress() service is initiated");
-		Address addressentity;
-		if(address == null)
-			addressentity = null;
-		else {
-			addressentity = iaddressRepository.save(address);
-		}
+		Address addressentity = iaddressRepository.save(address);
 		LOGGER.info("addAddress() service has executed");
 		return addressentity;
 	}
@@ -33,7 +29,7 @@ public class CAddressService implements IAddressService {
 		Address existaddress = iaddressRepository.findById(custId).orElse(null);
 		if(existaddress == null)
 		{
-			//throw new AddressNotFoundException("AddressNotFound");
+			throw new AddressNotFoundException("Address cannot be deleted. Customer Not Found");
 		}
 		else {
 			iaddressRepository.delete(existaddress);
@@ -43,13 +39,12 @@ public class CAddressService implements IAddressService {
 	}
 	
 	public Address updateAddress(long custId, Address address){
-		// TODO Auto-generated method stub
 		LOGGER.info("updateAddress() service is initiated");
 		Address addressentity = null;
 		Address updateaddress = iaddressRepository.findById(custId).orElse(null);
 		if(updateaddress == null)
 		{
-			//throw new AddressNotFoundException("AddressNotFound");
+			throw new AddressNotFoundException("Address cannot be updated. Customer not found.");
 		}
 		else {
 			addressentity = iaddressRepository.save(address);
@@ -63,7 +58,7 @@ public class CAddressService implements IAddressService {
 		Address getAddress = iaddressRepository.findById(custId).orElse(null);
 		if(getAddress == null)
 		{
-			//throw new AddressNotFoundException("AddressNotFound");
+			throw new AddressNotFoundException("Address cannot be found. Customer cannot be found.");
 		}
 		LOGGER.info("getAddress() service has executed");
 		return getAddress;

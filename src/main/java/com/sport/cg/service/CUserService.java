@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sport.cg.entity.User;
+import com.sport.cg.exception.UserNotFoundException;
 import com.sport.cg.repository.IUserRepository;
 
 @Service
@@ -24,20 +25,14 @@ public class CUserService implements IUserService {
 		Optional<User> inUser = userRepository.findById(user.getUserId());
 		if(inUser.isPresent()) {
 			if(inUser.get().getPassword().equals(user.getPassword())) {
-				User returnCorrect = new User();
-				returnCorrect.setUserId(inUser.get().getUserId());
-				returnCorrect.setPassword(inUser.get().getPassword());
-				returnCorrect.setRole(inUser.get().getRole());
-				return returnCorrect;
+				return inUser.get();
 			}
 			else {
-				//throw new PasswordIncorrectException();
-				return null;
+				throw new UserNotFoundException("The Password You Entered is Incorrect");
 			}
 		}
 		else {
-			//throw new UserNotFoundException();
-			return null;
+			throw new UserNotFoundException("No user with the user ID found");
 		}
 	}
 
@@ -46,15 +41,10 @@ public class CUserService implements IUserService {
 		LOGGER.info("EUser signIn()");
 		Optional<User> outUser = userRepository.findById(user.getUserId());
 		if(outUser.isPresent()) {
-			User returnOut = new User();
-			returnOut.setUserId(outUser.get().getUserId());
-			returnOut.setPassword(outUser.get().getPassword());
-			returnOut.setRole(outUser.get().getRole());
-			return returnOut;
+			return outUser.get();
 		}
 		else {
-			//throw new UserNotFounException();
-			return null;
+			throw new UserNotFoundException("User Not Found");
 		}
 	}
 
@@ -64,15 +54,10 @@ public class CUserService implements IUserService {
 		LOGGER.info("EUser changePassword()");
 		Optional<User> changedPasswordUser = userRepository.findById(user.getUserId());
 		if(changedPasswordUser.isPresent()) {
-			User returnChanged = new User();
-			returnChanged.setUserId(changedPasswordUser.get().getUserId());
-			returnChanged.setPassword(changedPasswordUser.get().getPassword());
-			returnChanged.setRole(changedPasswordUser.get().getRole());
-			return returnChanged;
+			return userRepository.save(user);
 		}
 		else {
-			//throw new UserNotFounException();
-			return null;
+			throw new UserNotFoundException("Password Not Updated. User Not Found");
 		}
 	}
 	

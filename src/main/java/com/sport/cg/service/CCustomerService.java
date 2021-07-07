@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sport.cg.entity.Customer;
+import com.sport.cg.exception.CustomerNotFoundException;
 import com.sport.cg.repository.ICustomerRepository;
 
 @Service
@@ -14,9 +15,16 @@ public class CCustomerService implements ICustomerService {
 	
 	@Autowired
 	private ICustomerRepository customerRepository;
-	@Override
+	
+		@Override
 		public List<Customer> getAllCustomers() {
-			return this.customerRepository.findAll();
+			List<Customer> allCustomers = customerRepository.findAll();
+			if (allCustomers.isEmpty()) {
+				throw new CustomerNotFoundException("No Customers Found");
+			}
+			else {
+				return allCustomers;
+			}
 		}
 
 		@Override
@@ -27,44 +35,36 @@ public class CCustomerService implements ICustomerService {
 		@Override
 		public Customer updateCustomer(Customer customer) {
 			Optional<Customer> customerC= this.customerRepository.findById(customer.getId());
+			Customer updatedCustomer = new Customer();
 			if(customerC.isPresent()) {
-				Customer customerUpdate = customerC.get();
-				customerUpdate.setId(customer.getId());
-				customerUpdate.setName(customer.getName());
-				customerUpdate.setEmail(customer.getEmail());
-				customerUpdate.setContactNo(customer.getContactNo());
-				customerUpdate.setDoB(customer.getDoB());
-				customerUpdate.setAddressEntity(customer.getAddressEntity());
-				customerRepository.save(customerUpdate);
-				return customerUpdate;
+				updatedCustomer = customerRepository.save(customer);
+				return updatedCustomer;
 			}else {
-				//throw new CustomerNotFoundException("customer not found with id :" +customer.getCusId());
+				throw new CustomerNotFoundException("Customer cannot be Updated. Customer cannot be found.");
 			}
-			return customer;
-			
 		}
 
 		@Override
 		public Customer getCustomerById(long cusId) {
 			Optional<Customer> customerC= this.customerRepository.findById(cusId);
 			if(customerC.isPresent()) {
-			return customerC.get();
-		}else {
-			//throw new CustomerNotFoundException("Record not found by id" +cusId);
-		}
-			return null;
-			
+				return customerC.get();
+			}
+			else {
+				throw new CustomerNotFoundException("Customer Record Not Found");
+			}			
 		}
 
 		@Override
-		public void deleteCustomer(long cusId) {
-			Optional<Customer> customerC= this.customerRepository.findById(cusId);
-			if(customerC.isPresent()) {
-			this.customerRepository.delete(customerC.get());
-		}else {
-			//throw new CustomerNotFoundException("Record not found by id" +cusId);
+		public Customer deleteCustomer(long cusId) {
+			Optional<Customer> deletedCard = this.customerRepository.findById(cusId);
+			if(deletedCard.isPresent()) {
+				customerRepository.delete(deletedCard.get());
+			}
+			else {
+				throw new CustomerNotFoundException("Record not found by id" +cusId);
+			}
+			return deletedCard.get();
 		}
-			
-	}
 
 }

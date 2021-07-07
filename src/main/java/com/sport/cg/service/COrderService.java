@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sport.cg.entity.Orders;
+import com.sport.cg.exception.OrderNotFoundException;
 import com.sport.cg.repository.IOrderRepository;
 
 @Service
@@ -31,13 +32,13 @@ public class COrderService implements IOrderService{
 	@Transactional
 	public Orders removeOrder(long id) {
 		LOGGER.info("Orders removeOrder()");
-		if (orderRepository.findById(id).isPresent()){
+		Optional<Orders> removedOrder = orderRepository.findById(id);
+		if (removedOrder.isPresent()){
 			orderRepository.deleteById(id);
-			return null;
+			return removedOrder.get();
 		}
 		else {
-			//else throw new OrderNotFoundException();
-			return null;//FOR_THE_TIME_BEING
+			throw new OrderNotFoundException("Order record not found");
 		}
 		
 	}
@@ -46,18 +47,12 @@ public class COrderService implements IOrderService{
 	@Transactional
 	public Orders updateOrder(long id, Orders order) {
 		LOGGER.info("EOrder updateOrder()");
-		if (orderRepository.findById(id).isPresent()) {
-			Orders order2 = new Orders();
-			order2.setOrderId(order.getOrderId());
-			order2.setAmount(order.getAmount());
-			order2.setBillingDate(order.getBillingDate());
-			order2.seteCustomers(order.geteCustomers());
-			orderRepository.save(order2);
-			return order2;
+		Optional<Orders> updatedOrder = orderRepository.findById(id);
+		if (updatedOrder.isPresent()) {
+			return orderRepository.save(updatedOrder.get());
 		}
 		else {
-			//throws new OrderNotFoundException();
-			return null;
+			throw new OrderNotFoundException("Order Not Updated. Order Not Found");
 		}
 	}
 
@@ -71,17 +66,21 @@ public class COrderService implements IOrderService{
 			return foundOrderById;
 		}
 		else {
-			//throw new OrderNotFoundException();
-			return null;
+			throw new OrderNotFoundException("Order Record Not Found");
 		}
 	}
 
 	@Override
 	@Transactional
 	public List<Orders> getAllOrders() {
-		System.out.println("OrderService");
 		LOGGER.info("EOrder getAllOrders()");
-		return orderRepository.findAll();
+		List<Orders> allOrders = orderRepository.findAll();
+		if(allOrders.isEmpty()) {
+			throw new OrderNotFoundException("No Orders Found");
+		}
+		else {
+			return orderRepository.findAll();
+		}		
 	}
 	
 }

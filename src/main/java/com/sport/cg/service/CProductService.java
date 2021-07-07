@@ -1,12 +1,18 @@
 package com.sport.cg.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.sport.cg.entity.Product;
+import com.sport.cg.exception.ProductNotFoundException;
 import com.sport.cg.repository.IProductRepository;
 
+@Service
 public class CProductService implements IProductService {
 	
 
@@ -18,51 +24,63 @@ public class CProductService implements IProductService {
 	@Override
 	public Product addProduct(Product product) {
 		LOGGER.info("addProduct() serivice is initiated");
-		Product productEntity;
-		if(product == null)
-			productEntity = null;
-		else {
-			productEntity = iProductRepository.save(product);
-    	 }
-
-     LOGGER.info("addProduct() service has executed");
-     return productEntity;
-     
+		Product productEntity = iProductRepository.save(product);
+		LOGGER.info("addProduct() service has executed");
+		return productEntity;
 	}
 
 	@Override
 	public Product removeProduct(long productId) {
 		LOGGER.info("removeProduct() serivice is initiated");
-		Product delproduct = iProductRepository.findById(productId).get();
-		iProductRepository.delete(delproduct);
-		LOGGER.info("removeProduct() service has executed");
-		return null;
+		Optional<Product> delproduct = iProductRepository.findById(productId);
+		if(delproduct.isPresent()) {
+			iProductRepository.deleteById(productId);
+			LOGGER.info("removeProduct() service has executed");
+			return delproduct.get();
+		}
+		else {
+			throw new ProductNotFoundException("No product with the id found");
+		}
 	}
 
 	
 	@Override
 	public Product updateProduct(long productId, Product product) {
 		LOGGER.info("updateProduct() serivice is initiated");
-		Product updateProduct = iProductRepository.findById(productId).get();
-		updateProduct = iProductRepository.save(product);
-		LOGGER.info("updateProduct() service has executed");
-		return updateProduct;
+		Optional<Product> updateProduct = iProductRepository.findById(productId);
+		if(updateProduct.isPresent()) {
+			LOGGER.info("updateProduct() service has executed");
+			return iProductRepository.save(product);
+		}
+		else {
+			throw new ProductNotFoundException("Product not Updated. Product not found");
+		}
 	}
 
 	@Override
 	public Product getProduct(long productId) {
 		LOGGER.info("getProduct() serivice is initiated");
-		Product getProduct = iProductRepository.findById(productId).get();
-		LOGGER.info("getProduct() service has executed");
-		return getProduct;
+		Optional<Product> getProduct = iProductRepository.findById(productId);
+		if(getProduct.isPresent()) {
+			LOGGER.info("getProduct() service has executed");
+			return getProduct.get();
+		}
+		else {
+			throw new ProductNotFoundException("No product with the ID found");
+		}
 	}
 
 	@Override
 	public List<Product> getAllProduct() {
 		LOGGER.info("getAllProduct() serivice is initiated");
 		List<Product> getAllProduct = iProductRepository.findAll();
-		LOGGER.info("getAllProduct() service has executed");
-		return getAllProduct;
+		if(getAllProduct.isEmpty()) {
+			throw new ProductNotFoundException("No Products Found");
+		}
+		else {
+			LOGGER.info("getAllProduct() service has executed");
+			return getAllProduct;
+		}
 	}
 	
 	@Override
@@ -70,13 +88,12 @@ public class CProductService implements IProductService {
 	{
 		LOGGER.info("getProductByName() serivice is initiated");
 		List<Product> getProductName = iProductRepository.findByName(name);
-		if (getProductName == null)
-		{
-			String namenotfound = "No products found by the name "+name;
-			//throw new ProductsException(namenotfound);
+		if (getProductName == null){
+			throw new ProductNotFoundException("No products found by the name "+name);
+		}else {
+			LOGGER.info("getProductByName() service has executed");
+			return getProductName;
 		}
-		LOGGER.info("getProductByName() service has executed");
-		return getProductName;
 	}
 	
 	
@@ -87,11 +104,11 @@ public class CProductService implements IProductService {
 		List<Product> productSize = iProductRepository.findBySize(size);
 		if (productSize == null)
 		{
-			//String sizenotfound = "No products found by the size "+size;
-			//throw new ProductsException(sizenotfound);
+			throw new ProductNotFoundException("No products found by the size "+size);
+		}else {
+			LOGGER.info("getProductBySize() service has executed");
+			return productSize;
 		}
-		LOGGER.info("getProductBySize() service has executed");
-		return productSize;
 	}
 	
 	@Override
@@ -99,14 +116,12 @@ public class CProductService implements IProductService {
 	{
 		LOGGER.info("getProductByPrice() serivice is initiated");
 		List<Product> productPrice = iProductRepository.findByPrice(price);
-		if (productPrice == null)
-		{
-			//String pricenotfound = "No products found by the price "+price;
-			//throw new ProductsException(pricenotfound);
+		if (productPrice.isEmpty()){
+			throw new ProductNotFoundException("No products found by the price "+price);
+		}else {
+			LOGGER.info("getProductByPrice() service has executed");
+			return productPrice;
 		}
-		LOGGER.info("getProductByPrice() service has executed");
-		return productPrice;
-		
 	}
 	
 	@Override
@@ -114,14 +129,11 @@ public class CProductService implements IProductService {
 	{
 		LOGGER.info("getProductByColor() serivice is initiated");
 		List<Product> productColor = iProductRepository.findByColor(color);
-		if (productColor == null)
-		{
-		//	String colornotfound = "No products found by the color "+color;
-		//	throw new ProductsException(colornotfound);
+		if (productColor.isEmpty()){
+			throw new ProductNotFoundException("No products found by the color "+color);
+		}else {
+			LOGGER.info("getProductByColor() service has executed");
+			return productColor;
 		}
-		LOGGER.info("getProductByColor() service has executed");
-		return productColor;
 	}
-
-
 }
