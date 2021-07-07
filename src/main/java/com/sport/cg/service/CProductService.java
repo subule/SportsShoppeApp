@@ -10,7 +10,7 @@ import com.sport.cg.repository.IProductRepository;
 public class CProductService implements IProductService {
 	
 
-	static final Logger LOGGER = LoggerFactory.getLogger(CProductService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CProductService.class);
 	
 	@Autowired 
 	private IProductRepository iProductRepository;
