@@ -2,21 +2,13 @@ package com.sport.cg.testservice;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,9 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.sport.cg.entity.Address;
 import com.sport.cg.entity.Customer;
 import com.sport.cg.entity.Orders;
-import com.sport.cg.exception.OrderNotFoundException;
 import com.sport.cg.repository.IOrderRepository;
-import com.sport.cg.service.COrderService;
 import com.sport.cg.service.IOrderService;
 
 @SpringBootTest
