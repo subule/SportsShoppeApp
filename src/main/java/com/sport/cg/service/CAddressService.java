@@ -24,7 +24,7 @@ public class CAddressService implements IAddressService {
 		return addressentity;
 	}
 	
-	public Address removeAddress(long custId){
+	public Address removeAddress(Long custId){
 		LOGGER.info("removeAddress() service is initiated");
 		Address existaddress = iaddressRepository.findById(custId).orElse(null);
 		if(existaddress == null)
@@ -38,7 +38,7 @@ public class CAddressService implements IAddressService {
 		return existaddress;
 	}
 	
-	public Address updateAddress(long custId, Address address){
+	public Address updateAddress(Long custId, Address address){
 		LOGGER.info("updateAddress() service is initiated");
 		Address addressentity = null;
 		Address updateaddress = iaddressRepository.findById(custId).orElse(null);
@@ -53,7 +53,7 @@ public class CAddressService implements IAddressService {
 		return addressentity;
 	}
 	
-	public Address getAddress(long custId){
+	public Address getAddress(Long custId){
 		LOGGER.info("getAddress() service is initiated");
 		Address getAddress = iaddressRepository.findById(custId).orElse(null);
 		if(getAddress == null)

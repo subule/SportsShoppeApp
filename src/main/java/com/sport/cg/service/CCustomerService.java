@@ -34,7 +34,7 @@ public class CCustomerService implements ICustomerService {
 
 		@Override
 		public Customer updateCustomer(Customer customer) {
-			Optional<Customer> customerC= this.customerRepository.findById(customer.getId());
+			Optional<Customer> customerC= customerRepository.findById(customer.getId());
 			Customer updatedCustomer = new Customer();
 			if(customerC.isPresent()) {
 				updatedCustomer = customerRepository.save(customer);
@@ -46,7 +46,7 @@ public class CCustomerService implements ICustomerService {
 
 		@Override
 		public Customer getCustomerById(long cusId) {
-			Optional<Customer> customerC= this.customerRepository.findById(cusId);
+			Optional<Customer> customerC= customerRepository.findById(cusId);
 			if(customerC.isPresent()) {
 				return customerC.get();
 			}
@@ -57,7 +57,7 @@ public class CCustomerService implements ICustomerService {
 
 		@Override
 		public Customer deleteCustomer(long cusId) {
-			Optional<Customer> deletedCard = this.customerRepository.findById(cusId);
+			Optional<Customer> deletedCard = customerRepository.findById(cusId);
 			if(deletedCard.isPresent()) {
 				customerRepository.delete(deletedCard.get());
 			}

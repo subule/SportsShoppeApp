@@ -22,7 +22,7 @@ public class AddressController {
 static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	
 	@Autowired
-	private IAddressService addressServiceImpl;
+	IAddressService addressServiceImpl;
 
 	@PostMapping("/addAddress")
 	public Address addAddress(@RequestBody Address address){
@@ -33,7 +33,7 @@ static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	}
 
 	@DeleteMapping("/removeAddress/Address/{custId}")
-	public Address removeAddress(@PathVariable long custId){
+	public Address removeAddress(@PathVariable Long custId){
 		LOGGER.info("removeAddress URL is opened");
 		LOGGER.info("removeAddress() is initiated");
 		LOGGER.info("removeAddress() has executed");
@@ -41,7 +41,7 @@ static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	}
 
 	@PutMapping("/updateAddress/{custId}")
-	public Address updateAddress(@PathVariable long custId,@RequestBody Address address){
+	public Address updateAddress(@PathVariable Long custId,@RequestBody Address address){
 		LOGGER.info("updateAddress URL is opened");
 		LOGGER.info("updateAddress() is initiated");
 		LOGGER.info("updateAddress() has executed");
@@ -49,7 +49,7 @@ static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 	}
 
 	@GetMapping("/getAddressDetails/{custId}")
-	public Address getAddress(@PathVariable long custId){
+	public Address getAddress(@PathVariable Long custId){
 		LOGGER.info("getAddressDetails URL is opened");
 		LOGGER.info("getAddress() is initiated");
 		LOGGER.info("getAddress() has executed");

@@ -10,9 +10,9 @@ import com.sport.cg.entity.Orders;
 public interface IOrderService {
 	
 	public Orders addOrder(Orders order);
-	public Orders removeOrder(long id);
-	public Orders  updateOrder(long id, Orders order);
-	public Orders  getOrderDetails(long id);
+	public Orders removeOrder(Long id);
+	public Orders  updateOrder(Long id, Orders order);
+	public Orders  getOrderDetails(Long id);
 	public List<Orders> getAllOrders(); 
 
 }

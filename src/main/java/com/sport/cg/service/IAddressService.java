@@ -8,8 +8,8 @@ import com.sport.cg.entity.Address;
 public interface IAddressService {
 	
 	public Address addAddress(Address address);
-	public Address removeAddress(long custId);
-	public Address updateAddress(long custId,Address address);
-	public Address getAddress(long custId);
+	public Address removeAddress(Long custId);
+	public Address updateAddress(Long custId,Address address);
+	public Address getAddress(Long custId);
 
 }

@@ -17,7 +17,7 @@ import com.sport.cg.repository.IOrderRepository;
 public class COrderService implements IOrderService{
 
 	@Autowired
-	IOrderRepository orderRepository;
+	private IOrderRepository orderRepository;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(COrderService.class);
 
@@ -30,7 +30,7 @@ public class COrderService implements IOrderService{
 
 	@Override
 	@Transactional
-	public Orders removeOrder(long id) {
+	public Orders removeOrder(Long id) {
 		LOGGER.info("Orders removeOrder()");
 		Optional<Orders> removedOrder = orderRepository.findById(id);
 		if (removedOrder.isPresent()){
@@ -45,7 +45,7 @@ public class COrderService implements IOrderService{
 
 	@Override
 	@Transactional
-	public Orders updateOrder(long id, Orders order) {
+	public Orders updateOrder(Long id, Orders order) {
 		LOGGER.info("EOrder updateOrder()");
 		Optional<Orders> updatedOrder = orderRepository.findById(id);
 		if (updatedOrder.isPresent()) {
@@ -58,7 +58,7 @@ public class COrderService implements IOrderService{
 
 	@Override
 	@Transactional
-	public Orders getOrderDetails(long id) {
+	public Orders getOrderDetails(Long id) {
 		LOGGER.info("EOrder getOrderDetails()");
 		Optional<Orders> orderById = orderRepository.findById(id) ;
 		if(orderById.isPresent()) {

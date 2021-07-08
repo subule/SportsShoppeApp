@@ -29,11 +29,11 @@ public class OrderController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 	
-	@GetMapping("/hello/message")
+	/*@GetMapping("/hello/message")
 	public String helloMessage() {
 		System.out.println("Hello Message");
 		return "From Controller";
-	}
+	}*/
 	
 	@PostMapping(path="/addedOrders")
 	public ResponseEntity<Orders> addOrder(@Validated @RequestBody Orders order) {
