@@ -1,16 +1,22 @@
 package com.sport.cg.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Card {
+public class Card implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Long CardId;
 	@NotNull
@@ -21,7 +27,7 @@ public class Card {
 	private LocalDate expiryDate;
 	@NotNull
 	private String bankName;
-	@ManyToOne
+	@ManyToOne@JoinColumn(name="paymentId")
 	private Payment cardPaymentEntity;
 	
 	public Card() {

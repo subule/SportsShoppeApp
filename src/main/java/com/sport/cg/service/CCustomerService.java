@@ -45,7 +45,7 @@ public class CCustomerService implements ICustomerService {
 		}
 
 		@Override
-		public Customer getCustomerById(long cusId) {
+		public Customer getCustomerById(Long cusId) {
 			Optional<Customer> customerC= customerRepository.findById(cusId);
 			if(customerC.isPresent()) {
 				return customerC.get();
@@ -56,7 +56,7 @@ public class CCustomerService implements ICustomerService {
 		}
 
 		@Override
-		public Customer deleteCustomer(long cusId) {
+		public Customer deleteCustomer(Long cusId) {
 			Optional<Customer> deletedCard = customerRepository.findById(cusId);
 			if(deletedCard.isPresent()) {
 				customerRepository.delete(deletedCard.get());

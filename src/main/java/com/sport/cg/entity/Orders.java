@@ -1,10 +1,12 @@
 package com.sport.cg.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,8 +19,12 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Orders {
+public class Orders implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long orderId;
@@ -28,7 +34,7 @@ public class Orders {
 	private LocalDate billingDate;
     @NotNull
 	private String paymentMethod;
-    @ManyToOne
+    @ManyToOne@JoinColumn(name="id")
 	private Customer eCustomers;
 	@OneToMany(mappedBy="orderEntity",cascade = CascadeType.ALL)
 	private List<Product> eproductEntity;

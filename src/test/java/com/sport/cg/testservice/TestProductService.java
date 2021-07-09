@@ -52,7 +52,7 @@ class TestProductService {
 		a.setSize("35 inches");
 		a.setMrp(450.5);
 		a.setPriceAfterDiscount(399.9);
-		a.setInStock(true);
+		a.setInStock("Y");
 		a.setExpectedDelivery(LocalDate.now());
 		a.setOrderEntity(null);
 		a.setCartEntity(c22List);
@@ -95,7 +95,7 @@ class TestProductService {
 		a1.setSize("35 inches");
 		a1.setMrp(450.5);
 		a1.setPriceAfterDiscount(399.9);
-		a1.setInStock(true);
+		a1.setInStock("Y");
 		a1.setExpectedDelivery(LocalDate.now());
 		a1.setOrderEntity(null);
 		a1.setCartEntity(c23List);
@@ -140,7 +140,7 @@ class TestProductService {
 		a2.setSize("35 inches");
 		a2.setMrp(450.5);
 		a2.setPriceAfterDiscount(399.9);
-		a2.setInStock(true);
+		a2.setInStock("Y");
 		a2.setExpectedDelivery(LocalDate.now());
 		a2.setOrderEntity(null);
 		a2.setCartEntity(c24List);
@@ -185,7 +185,7 @@ class TestProductService {
 		a3.setSize("35 inches");
 		a3.setMrp(450.5);
 		a3.setPriceAfterDiscount(399.9);
-		a3.setInStock(true);
+		a3.setInStock("Y");
 		a3.setExpectedDelivery(LocalDate.now());
 		a3.setOrderEntity(null);
 		a3.setCartEntity(c25List);
@@ -229,7 +229,7 @@ class TestProductService {
 		a4.setSize("35 inches");
 		a4.setMrp(450.5);
 		a4.setPriceAfterDiscount(399.9);
-		a4.setInStock(true);
+		a4.setInStock("Y");
 		a4.setExpectedDelivery(LocalDate.now());
 		a4.setOrderEntity(null);
 		a4.setCartEntity(c26List);
@@ -244,7 +244,7 @@ class TestProductService {
 		a6.setSize("35 inches");
 		a6.setMrp(450.5);
 		a6.setPriceAfterDiscount(399.9);
-		a6.setInStock(true);
+		a6.setInStock("Y");
 		a6.setExpectedDelivery(LocalDate.now());
 		a6.setOrderEntity(null);
 		a6.setCartEntity(c26List);
@@ -290,7 +290,7 @@ class TestProductService {
 		a5.setSize("35 inches");
 		a5.setMrp(450.5);
 		a5.setPriceAfterDiscount(399.9);
-		a5.setInStock(true);
+		a5.setInStock("Y");
 		a5.setExpectedDelivery(LocalDate.now());
 		a5.setOrderEntity(null);
 		a5.setCartEntity(c27List);
@@ -305,7 +305,7 @@ class TestProductService {
 		a7.setSize("35 inches");
 		a7.setMrp(450.5);
 		a7.setPriceAfterDiscount(399.9);
-		a7.setInStock(true);
+		a7.setInStock("Y");
 		a7.setExpectedDelivery(LocalDate.now());
 		a7.setOrderEntity(null);
 		a7.setCartEntity(c27List);
@@ -351,7 +351,7 @@ class TestProductService {
 		a6.setSize("35 inches");
 		a6.setMrp(450.5);
 		a6.setPriceAfterDiscount(399.9);
-		a6.setInStock(true);
+		a6.setInStock("Y");
 		a6.setExpectedDelivery(LocalDate.now());
 		a6.setOrderEntity(null);
 		a6.setCartEntity(c28List);
@@ -366,7 +366,7 @@ class TestProductService {
 		a8.setSize("35 inches");
 		a8.setMrp(450.5);
 		a8.setPriceAfterDiscount(399.9);
-		a8.setInStock(true);
+		a8.setInStock("Y");
 		a8.setExpectedDelivery(LocalDate.now());
 		a8.setOrderEntity(null);
 		a8.setCartEntity(c28List);
@@ -412,7 +412,7 @@ class TestProductService {
 		a9.setSize("35 inches");
 		a9.setMrp(450.5);
 		a9.setPriceAfterDiscount(399.9);
-		a9.setInStock(true);
+		a9.setInStock("Y");
 		a9.setExpectedDelivery(LocalDate.now());
 		a9.setOrderEntity(null);
 		a9.setCartEntity(c29List);
@@ -427,7 +427,7 @@ class TestProductService {
 		a11.setSize("35 inches");
 		a11.setMrp(450.5);
 		a11.setPriceAfterDiscount(399.9);
-		a11.setInStock(true);
+		a11.setInStock("Y");
 		a11.setExpectedDelivery(LocalDate.now());
 		a11.setOrderEntity(null);
 		a11.setCartEntity(c29List);
@@ -473,7 +473,7 @@ class TestProductService {
 		a33.setSize("35 inches");
 		a33.setMrp(450.5);
 		a33.setPriceAfterDiscount(399.9);
-		a33.setInStock(true);
+		a33.setInStock("Y");
 		a33.setExpectedDelivery(LocalDate.now());
 		a33.setOrderEntity(null);
 		a33.setCartEntity(c33List);
@@ -488,7 +488,7 @@ class TestProductService {
 		a22.setSize("35 inches");
 		a22.setMrp(450.5);
 		a22.setPriceAfterDiscount(399.9);
-		a22.setInStock(true);
+		a22.setInStock("Y");
 		a22.setExpectedDelivery(LocalDate.now());
 		a22.setOrderEntity(null);
 		a22.setCartEntity(c33List);

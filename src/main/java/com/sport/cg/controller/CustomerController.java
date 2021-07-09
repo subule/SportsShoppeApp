@@ -25,29 +25,29 @@ public class CustomerController {
 	@Autowired
 	private ICustomerService customerService;
 	
-	@GetMapping("/customers")
+	@GetMapping("/customersAll")
 	public ResponseEntity<List<Customer>> getAllCustomers(){
 	return ResponseEntity.ok().body( customerService.getAllCustomers());
 	}
 	
-	@GetMapping("/customers/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable long cusId){
+	@GetMapping("/customersId/{id}")
+	public ResponseEntity<Customer> getCustomerById(@PathVariable Long cusId){
 	return ResponseEntity.ok().body( customerService.getCustomerById(cusId));
 	}
 	
-	@PostMapping("/customers")
+	@PostMapping("/customersAdd")
 	public ResponseEntity<Customer> addCustomer(@Validated @RequestBody Customer customer){
 	return ResponseEntity.ok().body(this.customerService.addCustomer(customer));
 	}
 	
-	@PutMapping("/Customers/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable long cusId, @Validated @RequestBody Customer customer){
+	@PutMapping("/customersUpdate/{id}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Long cusId, @Validated @RequestBody Customer customer){
 	customer.setId(cusId);
 	return ResponseEntity.ok().body(this.customerService.updateCustomer(customer));
 	}
 
-	@DeleteMapping("customer/{id}")
-	public HttpStatus deleteCustomer(@PathVariable long cusId) {
+	@DeleteMapping("customersDelete/{id}")
+	public HttpStatus deleteCustomer(@PathVariable Long cusId) {
 	this.customerService.deleteCustomer(cusId);
 	return HttpStatus.OK;
 	}

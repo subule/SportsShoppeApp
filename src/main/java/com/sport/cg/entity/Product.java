@@ -1,5 +1,6 @@
 package com.sport.cg.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -15,8 +17,12 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long productId;
 	@NotNull
@@ -28,10 +34,10 @@ public class Product {
 	private String size;
 	private Double mrp;
 	private Double priceAfterDiscount;
-	private Boolean inStock;
+	private String inStock;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate expectedDelivery;
-	@ManyToOne
+	@ManyToOne@JoinColumn(name="orderId")
 	private Orders orderEntity;
 	@ManyToMany(fetch=FetchType.LAZY,mappedBy="productEntity")
 	private List<Cart> cartEntity;
@@ -41,7 +47,7 @@ public class Product {
 	}
 
 	public Product(Long productId, String productName, String category, String description, String brand,
-			String colour, String size, Double mrp, Double priceAfterDiscount, Boolean inStock,
+			String colour, String size, Double mrp, Double priceAfterDiscount, String inStock,
 			LocalDate expectedDelivery, Orders orderEntity, List<Cart> cartEntity) {
 		super();
 		this.productId = productId;
@@ -131,11 +137,11 @@ public class Product {
 		this.priceAfterDiscount = priceAfterDiscount;
 	}
 
-	public Boolean getInStock() {
+	public String getInStock() {
 		return inStock;
 	}
 
-	public void setInStock(Boolean inStock) {
+	public void setInStock(String inStock) {
 		this.inStock = inStock;
 	}
 

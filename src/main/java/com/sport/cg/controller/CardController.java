@@ -61,7 +61,7 @@ public class CardController {
 	}
 	
 	
-	@GetMapping("/")
+	@GetMapping("/allCards")
 	public ResponseEntity<List<Card>> getAllCard() {
 		LOGGER.info("Called GET mapping addAllCard() method");
 		List<Card> allCard = cardService.getAllCards();

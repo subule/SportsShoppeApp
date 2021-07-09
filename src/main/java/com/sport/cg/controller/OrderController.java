@@ -56,7 +56,7 @@ public class OrderController {
 		return new ResponseEntity<Orders>(updatedOrder, HttpStatus.OK);
 	}
 
-	@GetMapping(path="/orderDetailsById /{id}")
+	@GetMapping(path="/orderDetailsById/{id}")
 	public ResponseEntity<Orders> getOrderDetails(@PathVariable long id){
 		LOGGER.info("EOrder getOrderDetails()");
 		Orders orderDetailsById =  orderService.getOrderDetails(id);

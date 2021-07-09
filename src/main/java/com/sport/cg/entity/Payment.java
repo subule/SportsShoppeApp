@@ -1,5 +1,6 @@
 package com.sport.cg.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,14 +12,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Payment {
+public class Payment implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
 	private String type;
 	private String status;
-	@OneToOne(mappedBy="paymentEntity")
+	@OneToOne
 	private Orders payOrderEntity;
 	@OneToMany(mappedBy = "cardPaymentEntity",cascade=CascadeType.ALL)
 	private List<Card> cardEntity;
