@@ -14,9 +14,6 @@ import javax.persistence.OneToOne;
 @Entity
 public class Payment implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +22,7 @@ public class Payment implements Serializable{
 	private String status;
 	@OneToOne
 	private Orders payOrderEntity;
-	@OneToMany(mappedBy = "cardPaymentEntity",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "cardPaymentEntity")
 	private List<Card> cardEntity;
 	
 	public Payment() {

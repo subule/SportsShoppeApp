@@ -20,9 +20,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Orders implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,7 +34,7 @@ public class Orders implements Serializable {
 	private Customer eCustomers;
 	@OneToMany(mappedBy="orderEntity",cascade = CascadeType.ALL)
 	private List<Product> eproductEntity;
-	@OneToOne @JoinColumn(name="paymentId")
+	@OneToOne(targetEntity=Payment.class) @JoinColumn(name="paymentId")
 	private Payment paymentEntity;
 	
 	public Orders() {

@@ -26,7 +26,7 @@ public class UserController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 		
-	@GetMapping(path="/inUser")
+	@PostMapping(path="/inUser")
 	public ResponseEntity<User> signIn(@Validated @RequestBody User user) {
 		LOGGER.info("EUser signIn()");
 		return new ResponseEntity<User>(user, HttpStatus.OK);

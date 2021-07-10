@@ -33,14 +33,14 @@ class TestProductService {
 	void testAddProduct(){
 		
 		Cart c = new Cart();
-		List<Cart> c22List = new ArrayList<Cart>();
+		//List<Cart> c22List = new ArrayList<Cart>();
 		c.setId(1L);
 		c.setImageName("bat.png");
 		c.setProductName("bat"); 
 		c.setQuantity(2); 
 		c.setPrice(798.0); 
 		c.setTotal(820.0);
-		c22List.add(c);
+		//c22List.add(c);
 		
 		Product a = new Product();			
 		a.setProductId(1L);
@@ -55,7 +55,7 @@ class TestProductService {
 		a.setInStock("Y");
 		a.setExpectedDelivery(LocalDate.now());
 		a.setOrderEntity(null);
-		a.setCartEntity(c22List);
+		a.setCartEntity(c);
 		
 		List<Product> b23List = new ArrayList<Product>();			
 		Orders b = new Orders();
@@ -76,14 +76,14 @@ class TestProductService {
 	void testRemoveProduct(){
 		
 		Cart c1 = new Cart();
-		List<Cart> c23List = new ArrayList<Cart>();
+		//List<Cart> c23List = new ArrayList<Cart>();
 		c1.setId(1L);
 		c1.setImageName("bat.png");
 		c1.setProductName("bat"); 
 		c1.setQuantity(2); 
 		c1.setPrice(798.0); 
 		c1.setTotal(820.0);
-		c23List.add(c1);
+		//c23List.add(c1);
 		
 		Product a1 = new Product();			
 		a1.setProductId(1L);
@@ -98,7 +98,7 @@ class TestProductService {
 		a1.setInStock("Y");
 		a1.setExpectedDelivery(LocalDate.now());
 		a1.setOrderEntity(null);
-		a1.setCartEntity(c23List);
+		a1.setCartEntity(c1);
 		
 		List<Product> b24List = new ArrayList<Product>();			
 		Orders b1 = new Orders();
@@ -121,14 +121,14 @@ class TestProductService {
 	void testUpdateProduct(){
 		
 		Cart c3 = new Cart();
-		List<Cart> c24List = new ArrayList<Cart>();
+		//List<Cart> c24List = new ArrayList<Cart>();
 		c3.setId(1L);
 		c3.setImageName("bat.png");
 		c3.setProductName("bat"); 
 		c3.setQuantity(2); 
 		c3.setPrice(798.0); 
 		c3.setTotal(820.0);
-		c24List.add(c3);
+		//c24List.add(c3);
 		
 		Product a2 = new Product();			
 		a2.setProductId(1L);
@@ -143,7 +143,7 @@ class TestProductService {
 		a2.setInStock("Y");
 		a2.setExpectedDelivery(LocalDate.now());
 		a2.setOrderEntity(null);
-		a2.setCartEntity(c24List);
+		a2.setCartEntity(c3);
 		
 		List<Product> b25List = new ArrayList<Product>();			
 		Orders b2 = new Orders();
@@ -166,14 +166,14 @@ class TestProductService {
 	void testFindProductById(){
 		
 		Cart c4 = new Cart();
-		List<Cart> c25List = new ArrayList<Cart>();
+		//List<Cart> c25List = new ArrayList<Cart>();
 		c4.setId(1L);
 		c4.setImageName("bat.png");
 		c4.setProductName("bat"); 
 		c4.setQuantity(2); 
 		c4.setPrice(798.0); 
 		c4.setTotal(820.0);
-		c25List.add(c4);
+		//c25List.add(c4);
 		
 		Product a3 = new Product();			
 		a3.setProductId(1L);
@@ -188,7 +188,7 @@ class TestProductService {
 		a3.setInStock("Y");
 		a3.setExpectedDelivery(LocalDate.now());
 		a3.setOrderEntity(null);
-		a3.setCartEntity(c25List);
+		a3.setCartEntity(c4);
 		
 		List<Product> b26List = new ArrayList<Product>();			
 		Orders b3 = new Orders();
@@ -210,14 +210,14 @@ class TestProductService {
 	void testgetAllProducts(){
 		
 		Cart c5 = new Cart();
-		List<Cart> c26List = new ArrayList<Cart>();
+		//List<Cart> c26List = new ArrayList<Cart>();
 		c5.setId(1L);
 		c5.setImageName("bat.png");
 		c5.setProductName("bat"); 
 		c5.setQuantity(2); 
 		c5.setPrice(798.0); 
 		c5.setTotal(820.0);
-		c26List.add(c5);
+		//c26List.add(c5);
 		
 		Product a4 = new Product();			
 		a4.setProductId(1L);
@@ -232,7 +232,7 @@ class TestProductService {
 		a4.setInStock("Y");
 		a4.setExpectedDelivery(LocalDate.now());
 		a4.setOrderEntity(null);
-		a4.setCartEntity(c26List);
+		a4.setCartEntity(c5);
 	
 		Product a6 = new Product();			
 		a6.setProductId(2L);
@@ -247,7 +247,7 @@ class TestProductService {
 		a6.setInStock("Y");
 		a6.setExpectedDelivery(LocalDate.now());
 		a6.setOrderEntity(null);
-		a6.setCartEntity(c26List);
+		a6.setCartEntity(c5);
 		
 		List<Product> b27List = new ArrayList<Product>();			
 		Orders b4 = new Orders();
@@ -271,14 +271,14 @@ class TestProductService {
 	void testFindProductByName(){
 		
 		Cart c6 = new Cart();
-		List<Cart> c27List = new ArrayList<Cart>();
+		//List<Cart> c27List = new ArrayList<Cart>();
 		c6.setId(1L);
 		c6.setImageName("bat.png");
 		c6.setProductName("bat"); 
 		c6.setQuantity(2); 
 		c6.setPrice(798.0); 
 		c6.setTotal(820.0);
-		c27List.add(c6);
+		//c27List.add(c6);
 		
 		Product a5 = new Product();			
 		a5.setProductId(3L);
@@ -293,7 +293,7 @@ class TestProductService {
 		a5.setInStock("Y");
 		a5.setExpectedDelivery(LocalDate.now());
 		a5.setOrderEntity(null);
-		a5.setCartEntity(c27List);
+		a5.setCartEntity(c6);
 		
 		Product a7 = new Product();			
 		a7.setProductId(4L);
@@ -308,7 +308,7 @@ class TestProductService {
 		a7.setInStock("Y");
 		a7.setExpectedDelivery(LocalDate.now());
 		a7.setOrderEntity(null);
-		a7.setCartEntity(c27List);
+		a7.setCartEntity(c6);
 		
 		List<Product> b28List = new ArrayList<Product>();			
 		Orders b5 = new Orders();
@@ -332,14 +332,14 @@ class TestProductService {
 	void testFindProductBySize(){
 		
 		Cart c7 = new Cart();
-		List<Cart> c28List = new ArrayList<Cart>();
+		//List<Cart> c28List = new ArrayList<Cart>();
 		c7.setId(1L);
 		c7.setImageName("bat.png");
 		c7.setProductName("bat"); 
 		c7.setQuantity(2); 
 		c7.setPrice(798.0); 
 		c7.setTotal(820.0);
-		c28List.add(c7);
+		//c28List.add(c7);
 		
 		Product a6 = new Product();			
 		a6.setProductId(3L);
@@ -354,7 +354,7 @@ class TestProductService {
 		a6.setInStock("Y");
 		a6.setExpectedDelivery(LocalDate.now());
 		a6.setOrderEntity(null);
-		a6.setCartEntity(c28List);
+		a6.setCartEntity(c7);
 		
 		Product a8 = new Product();			
 		a8.setProductId(5L);
@@ -369,7 +369,7 @@ class TestProductService {
 		a8.setInStock("Y");
 		a8.setExpectedDelivery(LocalDate.now());
 		a8.setOrderEntity(null);
-		a8.setCartEntity(c28List);
+		a8.setCartEntity(c7);
 		
 		List<Product> b29List = new ArrayList<Product>();			
 		Orders b6 = new Orders();
@@ -393,14 +393,14 @@ class TestProductService {
 	void testFindProductByPrice(){
 		
 		Cart c8 = new Cart();
-		List<Cart> c29List = new ArrayList<Cart>();
+		//List<Cart> c29List = new ArrayList<Cart>();
 		c8.setId(1L);
 		c8.setImageName("bat.png");
 		c8.setProductName("bat"); 
 		c8.setQuantity(2); 
 		c8.setPrice(798.0); 
 		c8.setTotal(820.0);
-		c29List.add(c8);
+		//c29List.add(c8);
 		
 		Product a9 = new Product();			
 		a9.setProductId(3L);
@@ -415,7 +415,7 @@ class TestProductService {
 		a9.setInStock("Y");
 		a9.setExpectedDelivery(LocalDate.now());
 		a9.setOrderEntity(null);
-		a9.setCartEntity(c29List);
+		a9.setCartEntity(c8);
 		
 		Product a11 = new Product();			
 		a11.setProductId(6L);
@@ -430,7 +430,7 @@ class TestProductService {
 		a11.setInStock("Y");
 		a11.setExpectedDelivery(LocalDate.now());
 		a11.setOrderEntity(null);
-		a11.setCartEntity(c29List);
+		a11.setCartEntity(c8);
 		
 		List<Product> b22List = new ArrayList<Product>();			
 		Orders b7 = new Orders();
@@ -454,14 +454,14 @@ class TestProductService {
 	void testFindProductByColor(){
 		
 		Cart c9 = new Cart();
-		List<Cart> c33List = new ArrayList<Cart>();
+		//List<Cart> c33List = new ArrayList<Cart>();
 		c9.setId(1L);
 		c9.setImageName("bat.png");
 		c9.setProductName("bat"); 
 		c9.setQuantity(2); 
 		c9.setPrice(798.0); 
 		c9.setTotal(820.0);
-		c33List.add(c9);
+		//c33List.add(c9);
 		
 		Product a33 = new Product();			
 		a33.setProductId(6L);
@@ -476,7 +476,7 @@ class TestProductService {
 		a33.setInStock("Y");
 		a33.setExpectedDelivery(LocalDate.now());
 		a33.setOrderEntity(null);
-		a33.setCartEntity(c33List);
+		a33.setCartEntity(c9);
 		
 		Product a22 = new Product();			
 		a22.setProductId(7L);
@@ -491,7 +491,7 @@ class TestProductService {
 		a22.setInStock("Y");
 		a22.setExpectedDelivery(LocalDate.now());
 		a22.setOrderEntity(null);
-		a22.setCartEntity(c33List);
+		a22.setCartEntity(c9);
 		
 		List<Product> b24List = new ArrayList<Product>();			
 		Orders b8 = new Orders();

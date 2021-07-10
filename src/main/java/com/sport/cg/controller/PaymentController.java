@@ -32,27 +32,28 @@ public class PaymentController {
 	  LOGGER.info("Called POST mapping addPayment() method");
 	  return new ResponseEntity<>(paymentService.addPayment(payment), HttpStatus.CREATED); }
 	   
-	  @DeleteMapping("removedPayment/{paymentId}")
+	  @DeleteMapping("/removedPayment/{paymentId}")
 	  public ResponseEntity<Payment> removePayment(@PathVariable long id){
 	  LOGGER.info("Called DELETE mapping removePayment() method");
-	  return new ResponseEntity<Payment>(paymentService.removePayment(id), HttpStatus.OK);
+	  Payment updatedPayment = paymentService.getPayment(id);
+	  return new ResponseEntity<Payment>(updatedPayment, HttpStatus.OK);
 		  
 	  }
 	  
-	  @PutMapping("/updatedPayment")
-	  public ResponseEntity<Payment> updatePayment(@RequestBody Payment payment){
+	  @PutMapping("/updatedPayment/{id}")
+	  public ResponseEntity<Payment> updatePayment(@PathVariable long id, @RequestBody Payment payment){
 	  LOGGER.info("Called PUT mapping updatePayment() method");
 	  return new ResponseEntity<Payment>(paymentService.updatePayment(payment.getPaymentId(), payment), HttpStatus.ACCEPTED);
   
 	  }
 	  
-	  @GetMapping("paymentById/{paymentId}")
+	  @GetMapping("/paymentById/{paymentId}")
 	  public ResponseEntity<Payment> getPayment(@PathVariable long id) {
 	  LOGGER.info("Called GET mapping getPayment() method");
 	  return new ResponseEntity<Payment>(paymentService.getPayment(id), HttpStatus.OK);
 	  }
 	  
-	  @GetMapping
+	  @GetMapping("/allPayments")
 	  public ResponseEntity<List<Payment>> getAllPaymentDetails() {
 	  LOGGER.info("Called GET mapping getAllPaymentDetails() method");
       List<Payment> allPayments = paymentService.getAllPaymentDetails();

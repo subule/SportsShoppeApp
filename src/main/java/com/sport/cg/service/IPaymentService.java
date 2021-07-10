@@ -8,9 +8,9 @@ import com.sport.cg.entity.Payment;
 public interface IPaymentService {
 	
 	public Payment addPayment(Payment payment);
-	public Payment removePayment(long paymentId);
-	public Payment updatePayment(long paymentId, Payment payment);
-    public Payment getPayment(long paymentid) ;
+	public Payment removePayment(Long paymentId);
+	public Payment updatePayment(Long paymentId, Payment payment);
+    public Payment getPayment(Long paymentid) ;
 	public java.util.List<Payment> getAllPaymentDetails();
 
 }

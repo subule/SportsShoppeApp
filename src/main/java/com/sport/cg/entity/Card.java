@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,9 +14,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Card implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Long CardId;
@@ -27,7 +25,7 @@ public class Card implements Serializable {
 	private LocalDate expiryDate;
 	@NotNull
 	private String bankName;
-	@ManyToOne@JoinColumn(name="paymentId")
+	@ManyToOne(fetch=FetchType.LAZY)@JoinColumn(name="paymentId")
 	private Payment cardPaymentEntity;
 	
 	public Card() {

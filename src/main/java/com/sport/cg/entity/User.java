@@ -3,24 +3,22 @@ package com.sport.cg.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class User implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Long userId;
 	@NotNull
 	private String password;
-	@NotNull
 	private String role;
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY) @JoinColumn(name="id")
 	private Customer customer;
 	
 	public User() {

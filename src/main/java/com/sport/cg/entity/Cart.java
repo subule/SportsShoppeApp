@@ -3,21 +3,16 @@ package com.sport.cg.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Cart implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -30,7 +25,7 @@ public class Cart implements Serializable {
 	private Double price;
 	@NotNull
 	private Double total;
-	@ManyToMany(cascade = CascadeType.ALL) @JoinColumn(name="productId")
+	@OneToMany(mappedBy="cartEntity")
 	private List<Product> productEntity;
 	
 	public Cart() {

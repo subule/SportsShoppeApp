@@ -109,7 +109,7 @@ class TestCustomerService {
 	     Mockito.when(customerRepository.findById(13L)).thenReturn(c);
 	     c23.setEmail("stephen22@gmail.com");
 		 Mockito.when(customerRepository.save(c23)).thenReturn(c23);
-		 assertThat(customerService.updateCustomer(c23)).isEqualTo(c23);
+		 assertThat(customerService.updateCustomer(13L, c23)).isEqualTo(c23);
 	}
 
 	@Test

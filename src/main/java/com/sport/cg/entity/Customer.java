@@ -15,10 +15,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Customer implements Serializable {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +27,7 @@ public class Customer implements Serializable {
 	private String contactNo;
 	@Column(name = "DateOfBirth")
 	private LocalDate doB;
-	@OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customerEntity")
 	private List<Address> addressEntity;
 	@OneToMany(mappedBy="eCustomers")
 	private List<Orders> custOrderEntity;

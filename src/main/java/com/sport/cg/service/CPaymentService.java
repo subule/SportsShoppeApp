@@ -29,7 +29,7 @@ public class CPaymentService implements IPaymentService {
 		
 		
 		@Override
-		public Payment removePayment(long paymentId) {
+		public Payment removePayment(Long paymentId) {
 			LOGGER.info("Called removePayment() method of PaymentService");
 			Optional<Payment> searchedPayment = paymentRepository.findById(paymentId);
 			if (searchedPayment.isPresent()) {
@@ -43,7 +43,7 @@ public class CPaymentService implements IPaymentService {
 		}
 
 		@Override
-		public Payment updatePayment(long paymentId, Payment payment) {
+		public Payment updatePayment(Long paymentId, Payment payment) {
 			LOGGER.info("Called updatePayment() method of PaymentService");
 			Optional<Payment> searchedPayment = paymentRepository.findById(paymentId);
 			if (searchedPayment.isPresent()) {
@@ -54,7 +54,7 @@ public class CPaymentService implements IPaymentService {
 		}
 
 		@Override
-		public Payment getPayment(long paymentid) {
+		public Payment getPayment(Long paymentid) {
 			LOGGER.info("Called getPayment() method of PaymentService");
 			Optional<Payment> searchedPayment = paymentRepository.findById(paymentid);
 			if (searchedPayment.isPresent()) {

@@ -49,7 +49,7 @@ public class COrderService implements IOrderService{
 		LOGGER.info("EOrder updateOrder()");
 		Optional<Orders> updatedOrder = orderRepository.findById(id);
 		if (updatedOrder.isPresent()) {
-			return orderRepository.save(updatedOrder.get());
+			return orderRepository.save(order);
 		}
 		else {
 			throw new OrderNotFoundException("Order Not Updated. Order Not Found");

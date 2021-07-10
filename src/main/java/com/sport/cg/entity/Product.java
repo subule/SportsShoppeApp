@@ -2,15 +2,11 @@ package com.sport.cg.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -19,9 +15,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Product implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long productId;
@@ -37,10 +30,10 @@ public class Product implements Serializable {
 	private String inStock;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate expectedDelivery;
-	@ManyToOne@JoinColumn(name="orderId")
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Orders orderEntity;
-	@ManyToMany(fetch=FetchType.LAZY,mappedBy="productEntity")
-	private List<Cart> cartEntity;
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Cart cartEntity;
 	
 	public Product() {
 		super();
@@ -48,7 +41,7 @@ public class Product implements Serializable {
 
 	public Product(Long productId, String productName, String category, String description, String brand,
 			String colour, String size, Double mrp, Double priceAfterDiscount, String inStock,
-			LocalDate expectedDelivery, Orders orderEntity, List<Cart> cartEntity) {
+			LocalDate expectedDelivery, Orders orderEntity, Cart cartEntity) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -161,11 +154,11 @@ public class Product implements Serializable {
 		this.orderEntity = orderEntity;
 	}
 
-	public List<Cart> getCartEntity() {
+	public Cart getCartEntity() {
 		return cartEntity;
 	}
 
-	public void setCartEntity(List<Cart> cartEntity) {
+	public void setCartEntity(Cart cartEntity) {
 		this.cartEntity = cartEntity;
 	}
 

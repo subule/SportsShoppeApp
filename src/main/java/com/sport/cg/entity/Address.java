@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -26,7 +28,7 @@ public class Address implements Serializable {
 	private String state;
 	@Column(name = "pincode")
 	private Integer pincode;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
     private Customer customerEntity;
 	
 	public Address() {

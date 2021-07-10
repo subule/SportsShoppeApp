@@ -31,8 +31,8 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customersId/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable Long cusId){
-	return ResponseEntity.ok().body( customerService.getCustomerById(cusId));
+	public ResponseEntity<Customer> getCustomerById(@PathVariable Long id){
+	return ResponseEntity.ok().body( customerService.getCustomerById(id));
 	}
 	
 	@PostMapping("/customersAdd")
@@ -41,15 +41,14 @@ public class CustomerController {
 	}
 	
 	@PutMapping("/customersUpdate/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable Long cusId, @Validated @RequestBody Customer customer){
-	customer.setId(cusId);
-	return ResponseEntity.ok().body(this.customerService.updateCustomer(customer));
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @Validated @RequestBody Customer customer){
+	customer.setId(id);
+	return ResponseEntity.ok().body(this.customerService.updateCustomer(id, customer));
 	}
 
 	@DeleteMapping("customersDelete/{id}")
-	public HttpStatus deleteCustomer(@PathVariable Long cusId) {
-	this.customerService.deleteCustomer(cusId);
-	return HttpStatus.OK;
+	public ResponseEntity<Customer> deleteCustomer(@PathVariable Long id) {
+	return ResponseEntity.ok().body(this.customerService.deleteCustomer(id));
 	}
 	
 }

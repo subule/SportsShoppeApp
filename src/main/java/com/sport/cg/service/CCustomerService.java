@@ -33,20 +33,20 @@ public class CCustomerService implements ICustomerService {
 		}
 
 		@Override
-		public Customer updateCustomer(Customer customer) {
-			Optional<Customer> customerC= customerRepository.findById(customer.getId());
-			Customer updatedCustomer = new Customer();
+		public Customer updateCustomer(Long id, Customer customer) {
+			Optional<Customer> customerC= customerRepository.findById(id);
+			//Customer updatedCustomer = new Customer();
 			if(customerC.isPresent()) {
-				updatedCustomer = customerRepository.save(customer);
-				return updatedCustomer;
+				return customerRepository.save(customer);
+				//return updatedCustomer;
 			}else {
 				throw new CustomerNotFoundException("Customer cannot be Updated. Customer cannot be found.");
 			}
 		}
 
 		@Override
-		public Customer getCustomerById(Long cusId) {
-			Optional<Customer> customerC= customerRepository.findById(cusId);
+		public Customer getCustomerById(Long id) {
+			Optional<Customer> customerC= customerRepository.findById(id);
 			if(customerC.isPresent()) {
 				return customerC.get();
 			}
@@ -56,13 +56,13 @@ public class CCustomerService implements ICustomerService {
 		}
 
 		@Override
-		public Customer deleteCustomer(Long cusId) {
-			Optional<Customer> deletedCard = customerRepository.findById(cusId);
+		public Customer deleteCustomer(Long id) {
+			Optional<Customer> deletedCard = customerRepository.findById(id);
 			if(deletedCard.isPresent()) {
 				customerRepository.delete(deletedCard.get());
 			}
 			else {
-				throw new CustomerNotFoundException("Record not found by id" +cusId);
+				throw new CustomerNotFoundException("Record not found by id" +id);
 			}
 			return deletedCard.get();
 		}

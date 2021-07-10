@@ -11,7 +11,7 @@ public interface ICustomerService {
 	
 	public List<Customer>getAllCustomers();
 	public Customer addCustomer(Customer customer);
-	public Customer updateCustomer(Customer customer);
+	public Customer updateCustomer(Long id, Customer customer);
 	public Customer getCustomerById(Long cusId);
 	public Customer deleteCustomer(Long cusId);
 
