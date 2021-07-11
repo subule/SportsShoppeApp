@@ -324,7 +324,7 @@ class TestProductService {
 		opt.add(a5);
 		opt.add(a7);
 		
-	    Mockito.when(iProductRepository.findByName("bat")).thenReturn(opt);	    
+	    Mockito.when(iProductRepository.findByProductName("bat")).thenReturn(opt);	    
 	    assertThat(iProductService.getProductsByName("bat")).isEqualTo(opt);
 	}
 	
@@ -390,7 +390,7 @@ class TestProductService {
 	}
 	
 	@Test
-	void testFindProductByPrice(){
+	void testFindProductByMrp(){
 		
 		Cart c8 = new Cart();
 		//List<Cart> c29List = new ArrayList<Cart>();
@@ -446,8 +446,8 @@ class TestProductService {
 		opt.add(a9);
 		opt.add(a11);
 		
-	    Mockito.when(iProductRepository.findByPrice(450.5)).thenReturn(opt);	    
-	    assertThat(iProductService.getProductsByPrice(450.5)).isEqualTo(opt);
+	    Mockito.when(iProductRepository.findByMrp(450.5)).thenReturn(opt);	    
+	    assertThat(iProductService.getProductsByMrp(450.5)).isEqualTo(opt);
 	}
 	
 	@Test
@@ -506,7 +506,7 @@ class TestProductService {
 		List<Product> opt = new ArrayList<Product>();
 		opt.add(a22);
 		opt.add(a33);
-		Mockito.when(iProductRepository.findByColor("Orange")).thenReturn(opt);	    
-	    assertThat(iProductService.getProductsByColor("Orange")).isEqualTo(opt);
+		Mockito.when(iProductRepository.findByColour("Orange")).thenReturn(opt);	    
+	    assertThat(iProductService.getProductsByColour("Orange")).isEqualTo(opt);
 	}
 }

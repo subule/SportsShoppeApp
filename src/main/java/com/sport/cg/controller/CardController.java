@@ -22,7 +22,7 @@ import com.sport.cg.service.ICardService;
 
 
 @RestController
-@RequestMapping("/cardcontroller")
+@RequestMapping("/cardsweb/api")
 public class CardController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CardController.class);
@@ -30,14 +30,14 @@ public class CardController {
 	ICardService cardService;
 
 
-	@PostMapping("/addedCard")
+	@PostMapping("/cards")
 	public ResponseEntity<Card> addCard(@Validated @RequestBody Card card) {
 		LOGGER.info("Called POST mapping addCard() method");
-		return new ResponseEntity<>(cardService.addCard(card), HttpStatus.CREATED);
+		return new ResponseEntity<Card>(cardService.addCard(card), HttpStatus.CREATED);
 	}
 
 	
-	@DeleteMapping("/removedCard/{id}")
+	@DeleteMapping("/cards/{id}")
 	public ResponseEntity<Card> removeCard(@PathVariable Long id)  {
 		LOGGER.info("Called DELETE mapping removeCard() method");
 		return new ResponseEntity<Card>(cardService.removeCard(id), HttpStatus.OK);
@@ -45,7 +45,7 @@ public class CardController {
 	}
 	
 	
-	@PutMapping("/updatedCard/{id}")
+	@PutMapping("/cards/{id}")
 	public ResponseEntity<Card> updateCard(@PathVariable long id, @Validated @RequestBody Card card) {
 		LOGGER.info("Called PUT mapping updateCard() method");
 		Card updatable = cardService.updateCard(id, card);
@@ -54,14 +54,14 @@ public class CardController {
 	}
 
 	
-	@GetMapping("cardById/{id}")
+	@GetMapping("cards/{id}")
 	public ResponseEntity<Card> getCard(@PathVariable long id) {
 		LOGGER.info("Called GET mapping addCard() method");
 		return new ResponseEntity<Card>(cardService.getCardDetails(id), HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("/allCards")
+	@GetMapping("/cards")
 	public ResponseEntity<List<Card>> getAllCard() {
 		LOGGER.info("Called GET mapping addAllCard() method");
 		List<Card> allCard = cardService.getAllCards();

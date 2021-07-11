@@ -21,7 +21,7 @@ import com.sport.cg.entity.Product;
 import com.sport.cg.service.IProductService;
 
 @RestController
-@RequestMapping("onlinesportshopee/products")
+@RequestMapping("productsweb/api")
 public class ProductController {
 	
 	private	static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
@@ -29,7 +29,7 @@ public class ProductController {
 		@Autowired
 		private IProductService iProductService;
 		
-		@PostMapping("/addproduct")
+		@PostMapping("/products")
 		public ResponseEntity<Object> addProduct(@Validated @RequestBody Product product){
 			LOGGER.info("addProduct URL is opened");
 			LOGGER.info("addProduct() is initiated");
@@ -42,7 +42,7 @@ public class ProductController {
 			
 		}
 		
-		@DeleteMapping("/removeproduct/product/{productId}")
+		@DeleteMapping("/products/{productId}")
 		public ResponseEntity<Object> removeProduct(@PathVariable long productId){
 			LOGGER.info("removeProduct URL is opened");
 			LOGGER.info("removeProduct() is initiated");
@@ -55,7 +55,7 @@ public class ProductController {
 		 
 		}
 		
-		@PutMapping("/updateproduct/{productId}")
+		@PutMapping("/products/{productId}")
 		public ResponseEntity<Object> updateProduct(@PathVariable long productId, @RequestBody Product product){
 			LOGGER.info("updateProduct URL is opened");
 			LOGGER.info("updateProduct() is initiated");
@@ -68,7 +68,7 @@ public class ProductController {
 			
 		}
 		
-		@GetMapping("/getproduct/{productId}")
+		@GetMapping("/productsById/{productId}")
 		public ResponseEntity<Object> getProduct(@PathVariable long productId){
 			LOGGER.info("getProduct URL is opened");
 			LOGGER.info("getProduct() is initiated");
@@ -80,7 +80,7 @@ public class ProductController {
 			return productResponse;
 		}
 		
-		@GetMapping("/getallproduct")
+		@GetMapping("/products")
 		public List<Product> getAllProduct()
 		{
 			LOGGER.info("getAllProducts URL is opened");
@@ -89,43 +89,41 @@ public class ProductController {
 		}
 		
 		
-		@GetMapping("/byname/{name}")
-		public ResponseEntity<Object> getProductsByName(@PathVariable String name){
+		@GetMapping("/productsByName/{name}")
+		public ResponseEntity<List<Product>> getProductsByName(@PathVariable String name){
 			LOGGER.info("Productbyname URL is opened");
 			LOGGER.info("Productbyname() is initiated");
-			ResponseEntity<Object> response = null;
 			List<Product> products = iProductService.getProductsByName(name);
-			response = new ResponseEntity<>(products,HttpStatus.ACCEPTED);	
-			LOGGER.info("Productbyname() has Executed");
-			return response;
+			return new ResponseEntity<List<Product>>(products, HttpStatus.OK);	
+			
 		}
 		
-		@GetMapping("/bysize/{size}")
-		public ResponseEntity<Object> getProductsBySize(@PathVariable String size){
+		@GetMapping("/productsBySize/{size}")
+		public ResponseEntity<List<Product>> getProductsBySize(@PathVariable String size){
 			LOGGER.info("Productbysize URL is opened");
 			LOGGER.info("Productbysize() is initiated");
 			List<Product> bysize = iProductService.getProductsBySize(size);
-			ResponseEntity<Object> response = new ResponseEntity<>(bysize,HttpStatus.ACCEPTED);
+			ResponseEntity<List<Product>> response = new ResponseEntity<List<Product>>(bysize, HttpStatus.OK);
 			LOGGER.info("Productbysize() has Executed");
 			return response;
 		}
 		
-		@GetMapping("/byprice/{price}")
-		public ResponseEntity<Object> getProductsByPrice(@PathVariable double price){
+		@GetMapping("/productsByMrp/{mrp}")
+		public ResponseEntity<List<Product>> getProductsByPrice(@PathVariable double mrp){
 			LOGGER.info("Productbyprice URL is opened");
 			LOGGER.info("Productbyprice() is initiated");
-			List<Product> byprice = iProductService.getProductsByPrice(price);
-			ResponseEntity<Object> response = new ResponseEntity<>(byprice,HttpStatus.ACCEPTED);
+			List<Product> byprice = iProductService.getProductsByMrp(mrp);
+			ResponseEntity<List<Product>> response = new ResponseEntity<List<Product>>(byprice, HttpStatus.OK);
 			LOGGER.info("Productbyprice() has Executed");
 			return response;
 		}
 		
-		@GetMapping("/bycolor/{color}")
-		public ResponseEntity<Object> getProductsByColor(@PathVariable String color){
+		@GetMapping("/productsByColour/{colour}")
+		public ResponseEntity<List<Product>> getProductsByColor(@PathVariable String colour){
 			LOGGER.info("Productbycolor URL is opened");
 			LOGGER.info("Productbycolor() is initiated");
-			List<Product> bycolor = iProductService.getProductsByColor(color);
-			ResponseEntity<Object> response = new ResponseEntity<>(bycolor,HttpStatus.ACCEPTED);
+			List<Product> bycolor = iProductService.getProductsByColour(colour);
+			ResponseEntity<List<Product>> response = new ResponseEntity<List<Product>>(bycolor,HttpStatus.OK);
 			LOGGER.info("Productbycolor() has Executed");
 			return response;
 		}

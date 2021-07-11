@@ -21,13 +21,24 @@ class TestUserService {
 	
 	@Autowired
 	IUserService userService;
+	
+	@Test
+	void testAddUser() {
+		
+		User testable = new User();
+		testable.setUserId(123456L);
+		testable.setPassword("Abc!@#123");
+		
+		Mockito.when(userRepository.save(testable)).thenReturn(testable);
+		User returned = userService.createUser(testable);
+		assertThat(returned).isEqualTo(testable);
+	}
 
 	@Test
 	void testSignIn() {
 		User testable = new User();
 		testable.setUserId(125346L);
 		testable.setPassword("Agp@123#");
-		testable.setRole("Customer");
 		
 		Optional<User> findable = Optional.of(testable);
 		Mockito.when(userRepository.findById(125346L)).thenReturn(findable);
@@ -39,7 +50,6 @@ class TestUserService {
 		User testable1 = new User();
 		testable1.setUserId(125346L);
 		testable1.setPassword("Agp@123#");
-		testable1.setRole("Customer");
 		
 		Optional<User> findable = Optional.of(testable1);
 		Mockito.when(userRepository.findById(125346L)).thenReturn(findable);
@@ -51,7 +61,6 @@ class TestUserService {
 		User testable1 = new User();
 		testable1.setUserId(125346L);
 		testable1.setPassword("Agp@123#");
-		testable1.setRole("Customer");
 		
 		Optional<User> findable = Optional.of(testable1);
 		Mockito.when(userRepository.findById(125346L)).thenReturn(findable);

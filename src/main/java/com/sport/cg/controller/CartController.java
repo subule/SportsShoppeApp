@@ -19,7 +19,7 @@ import com.sport.cg.entity.Cart;
 import com.sport.cg.service.ICartService;
 
 @RestController
-@RequestMapping("onlinesportshopee/cart")
+@RequestMapping("cartsweb/api")
 public class CartController {
 	
 static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
@@ -27,7 +27,7 @@ static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
 	@Autowired
 	private ICartService cartService;
 	
-	@PostMapping("/addtocart")
+	@PostMapping("/carts")
 	public  ResponseEntity<Object> addtocart(@RequestBody Cart cartEntity) {
 		LOGGER.info("add-cart URL is opened");
 		LOGGER.info("addtocart() is initiated");
@@ -39,7 +39,7 @@ static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
 		return cartResponse;
 	}
 	
-	@DeleteMapping("/removefromcart/{delID}")
+	@DeleteMapping("/carts/{delID}")
 	public ResponseEntity<Object> deletecart(@PathVariable long delID) {
 		LOGGER.info("remove-cart URL is opened");
 		LOGGER.info("deletecart() is initiated");
@@ -50,7 +50,7 @@ static final Logger LOGGER = LoggerFactory.getLogger(CartController.class);
 
 	}
 	
-	@GetMapping("/getallcartdetials")
+	@GetMapping("/carts")
 	public List<Cart> getAllProduct()
 	{
 		LOGGER.info("getall-cartdetails URL is opened");

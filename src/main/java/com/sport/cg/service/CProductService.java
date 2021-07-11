@@ -87,7 +87,7 @@ public class CProductService implements IProductService {
 	public List<Product> getProductsByName(String name)
 	{
 		LOGGER.info("getProductByName() serivice is initiated");
-		List<Product> getProductName = iProductRepository.findByName(name);
+		List<Product> getProductName = iProductRepository.findByProductName(name);
 		if (getProductName == null){
 			throw new ProductNotFoundException("No products found by the name "+name);
 		}else {
@@ -112,12 +112,12 @@ public class CProductService implements IProductService {
 	}
 	
 	@Override
-	public List<Product> getProductsByPrice(double price)
+	public List<Product> getProductsByMrp(double mrp)
 	{
 		LOGGER.info("getProductByPrice() serivice is initiated");
-		List<Product> productPrice = iProductRepository.findByPrice(price);
+		List<Product> productPrice = iProductRepository.findByMrp(mrp);
 		if (productPrice.isEmpty()){
-			throw new ProductNotFoundException("No products found by the price "+price);
+			throw new ProductNotFoundException("No products found by the price "+mrp);
 		}else {
 			LOGGER.info("getProductByPrice() service has executed");
 			return productPrice;
@@ -125,15 +125,15 @@ public class CProductService implements IProductService {
 	}
 	
 	@Override
-	public List<Product> getProductsByColor(String color)
+	public List<Product> getProductsByColour(String colour)
 	{
-		LOGGER.info("getProductByColor() serivice is initiated");
-		List<Product> productColor = iProductRepository.findByColor(color);
-		if (productColor.isEmpty()){
-			throw new ProductNotFoundException("No products found by the color "+color);
+		LOGGER.info("getProductByColour() serivice is initiated");
+		List<Product> productColour = iProductRepository.findByColour(colour);
+		if (productColour.isEmpty()){
+			throw new ProductNotFoundException("No products found by the colour "+colour);
 		}else {
 			LOGGER.info("getProductByColor() service has executed");
-			return productColor;
+			return productColour;
 		}
 	}
 }

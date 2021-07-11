@@ -19,7 +19,7 @@ import com.sport.cg.entity.Orders;
 import com.sport.cg.repository.IOrderRepository;
 import com.sport.cg.service.IOrderService;
 
-@SpringBootTest
+@SpringBootTest //check this annotation
 class TestOrderService {
 	
 	@MockBean
@@ -57,7 +57,7 @@ class TestOrderService {
 		o1.seteCustomers(c1);
 		o1.setEproductEntity(null);
 		
-		Mockito.when(orderRepository.save(o1)).thenReturn(o1);
+		Mockito.when(orderRepository.save(o1)).thenReturn(o1); // Mackito is a class
 		Orders returned = orderService.addOrder(o1);
 		assertThat(returned).isEqualTo(o1);
 	}

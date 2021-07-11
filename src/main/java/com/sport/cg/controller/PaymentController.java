@@ -20,40 +20,40 @@ import com.sport.cg.entity.Payment;
 import com.sport.cg.service.IPaymentService;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/paymentsweb/api")
 public class PaymentController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PaymentController.class);
 	@Autowired
 	IPaymentService paymentService;
 	
-	  @PostMapping("/addedPayment")
+	  @PostMapping("/payments")
 	  public ResponseEntity<Payment> addPayment(@RequestBody Payment payment) {	
 	  LOGGER.info("Called POST mapping addPayment() method");
 	  return new ResponseEntity<>(paymentService.addPayment(payment), HttpStatus.CREATED); }
 	   
-	  @DeleteMapping("/removedPayment/{paymentId}")
-	  public ResponseEntity<Payment> removePayment(@PathVariable long id){
+	  @DeleteMapping("/payments/{id}")
+	  public ResponseEntity<Payment> removePayment(@PathVariable Long id){
 	  LOGGER.info("Called DELETE mapping removePayment() method");
-	  Payment updatedPayment = paymentService.getPayment(id);
+	  Payment updatedPayment = paymentService.removePayment(id);
 	  return new ResponseEntity<Payment>(updatedPayment, HttpStatus.OK);
 		  
 	  }
 	  
-	  @PutMapping("/updatedPayment/{id}")
-	  public ResponseEntity<Payment> updatePayment(@PathVariable long id, @RequestBody Payment payment){
+	  @PutMapping("/payments/{id}")
+	  public ResponseEntity<Payment> updatePayment(@PathVariable Long id, @RequestBody Payment payment){
 	  LOGGER.info("Called PUT mapping updatePayment() method");
 	  return new ResponseEntity<Payment>(paymentService.updatePayment(payment.getPaymentId(), payment), HttpStatus.ACCEPTED);
   
 	  }
 	  
-	  @GetMapping("/paymentById/{paymentId}")
-	  public ResponseEntity<Payment> getPayment(@PathVariable long id) {
+	  @GetMapping("/payments/{id}")
+	  public ResponseEntity<Payment> getPayment(@PathVariable Long id) {
 	  LOGGER.info("Called GET mapping getPayment() method");
 	  return new ResponseEntity<Payment>(paymentService.getPayment(id), HttpStatus.OK);
 	  }
 	  
-	  @GetMapping("/allPayments")
+	  @GetMapping("/payments")
 	  public ResponseEntity<List<Payment>> getAllPaymentDetails() {
 	  LOGGER.info("Called GET mapping getAllPaymentDetails() method");
       List<Payment> allPayments = paymentService.getAllPaymentDetails();

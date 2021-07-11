@@ -17,7 +17,6 @@ public class User implements Serializable{
 	private Long userId;
 	@NotNull
 	private String password;
-	private String role;
 	@OneToOne(fetch=FetchType.LAZY) @JoinColumn(name="id")
 	private Customer customer;
 	
@@ -25,11 +24,11 @@ public class User implements Serializable{
 		super();
 	}
 
-	public User(Long userId, String password, String role) {
+	public User(Long userId, String password, Customer customer) {
 		super();
 		this.userId = userId;
 		this.password = password;
-		this.role = role;
+		this.customer = customer;
 	}
 
 	public Long getUserId() {
@@ -48,12 +47,12 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override
@@ -62,7 +61,6 @@ public class User implements Serializable{
 		int result = 1;
 		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
@@ -86,11 +84,6 @@ public class User implements Serializable{
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
@@ -101,8 +94,8 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", role=" + role + ", customer=" + customer + "]";
+		return "User [userId=" + userId + ", password=" + password + ", customer=" + customer + "]";
 	}
 
-		
+	
 }

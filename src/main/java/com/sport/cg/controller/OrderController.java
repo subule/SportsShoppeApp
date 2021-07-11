@@ -21,7 +21,7 @@ import com.sport.cg.entity.Orders;
 import com.sport.cg.service.IOrderService;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/ordersweb/api")
 public class OrderController {
 	
 	@Autowired
@@ -29,41 +29,35 @@ public class OrderController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 	
-	/*@GetMapping("/hello/message")
-	public String helloMessage() {
-		System.out.println("Hello Message");
-		return "From Controller";
-	}*/
-	
-	@PostMapping(path="/addedOrders")
+	@PostMapping("/orders")
 	public ResponseEntity<Orders> addOrder(@Validated @RequestBody Orders order) {
 		LOGGER.info("EOrder addOrder()");
 		Orders addedOrder = orderService.addOrder(order);
 		return new ResponseEntity<Orders>(addedOrder, HttpStatus.ACCEPTED);
 	}
 
-	@DeleteMapping(path="/deletedOrders/{id}")
+	@DeleteMapping("/orders/{id}")
 	public HttpStatus removeOrder(@PathVariable long id) {
 		LOGGER.info("EOrder removeOrder()");
 		orderService.removeOrder(id);
 		return HttpStatus.OK;
 	}
 
-	@PutMapping(path="/updatedOrders/{id}")
+	@PutMapping("/orders/{id}")
 	public ResponseEntity<Orders> updateOrder(@PathVariable long id, @Validated @RequestBody Orders order) {
 		LOGGER.info("EOrder updateOrder()");
 		Orders updatedOrder = orderService.updateOrder(id, order);
 		return new ResponseEntity<Orders>(updatedOrder, HttpStatus.OK);
 	}
 
-	@GetMapping(path="/orderDetailsById/{id}")
+	@GetMapping("/orders/{id}")
 	public ResponseEntity<Orders> getOrderDetails(@PathVariable long id){
 		LOGGER.info("EOrder getOrderDetails()");
 		Orders orderDetailsById =  orderService.getOrderDetails(id);
 		return new ResponseEntity<Orders>(orderDetailsById, HttpStatus.OK);
 	}
 
-	@GetMapping(path="/allOrders")
+	@GetMapping("/orders")
 	public ResponseEntity<List<Orders>> getAllOrders() {
 		System.out.println("AllOrderController");
 		LOGGER.info("EOrder getAllOrders()");
