@@ -29,7 +29,7 @@ public class UserController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 	
 	@PostMapping("/usersAdd")
-	public ResponseEntity<User> createUser(@Validated @RequestBody User user){
+	public ResponseEntity<User> createUser(@RequestBody User user){
 		LOGGER.info("adding userintiated");
 		User use=userService.createUser(user);
 		ResponseEntity<User> response=new ResponseEntity<User>(use, HttpStatus.CREATED);
@@ -38,21 +38,21 @@ public class UserController {
 
 		
 	@PostMapping("/usersIn")
-	public ResponseEntity<User> signIn(@Validated @RequestBody User user) {
+	public ResponseEntity<User> signIn(@RequestBody User user) {
 		LOGGER.info("EUser signIn()");
 		User returnable = userService.signIn(user);
 		return new ResponseEntity<User>(returnable, HttpStatus.OK);
 	}
 
 	@PostMapping("/usersOut")
-	public ResponseEntity<User> signOut(@Validated @RequestBody User user) {
+	public ResponseEntity<User> signOut(@RequestBody User user) {
 		LOGGER.info("EUser signOut()");
 		User returnable = userService.signOut(user);
 		return new ResponseEntity<User>(returnable, HttpStatus.OK);
 	}
 
 	@PutMapping("/users/{id}")
-	public ResponseEntity<User> changePassword(@PathVariable long id, @Validated @RequestBody User user) {
+	public ResponseEntity<User> changePassword(@PathVariable long id, @RequestBody User user) {
 		LOGGER.info("EUser changePassword()");
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}

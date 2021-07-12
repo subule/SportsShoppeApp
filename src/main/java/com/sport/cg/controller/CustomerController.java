@@ -35,12 +35,12 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/customers")
-	public ResponseEntity<Customer> addCustomer(@Validated @RequestBody Customer customer){
+	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
 	return ResponseEntity.ok().body(this.customerService.addCustomer(customer));
 	}
 	
 	@PutMapping("/customers/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @Validated @RequestBody Customer customer){
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customer){
 	customer.setId(id);
 	return ResponseEntity.ok().body(this.customerService.updateCustomer(id, customer));
 	}

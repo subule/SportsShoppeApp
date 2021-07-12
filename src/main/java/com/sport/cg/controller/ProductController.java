@@ -30,7 +30,7 @@ public class ProductController {
 		private IProductService iProductService;
 		
 		@PostMapping("/products")
-		public ResponseEntity<Object> addProduct(@Validated @RequestBody Product product){
+		public ResponseEntity<Object> addProduct(@RequestBody Product product){
 			LOGGER.info("addProduct URL is opened");
 			LOGGER.info("addProduct() is initiated");
 			Product productDto = null;

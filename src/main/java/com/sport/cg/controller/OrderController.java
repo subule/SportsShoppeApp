@@ -30,7 +30,7 @@ public class OrderController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
 	
 	@PostMapping("/orders")
-	public ResponseEntity<Orders> addOrder(@Validated @RequestBody Orders order) {
+	public ResponseEntity<Orders> addOrder(@RequestBody Orders order) {
 		LOGGER.info("EOrder addOrder()");
 		Orders addedOrder = orderService.addOrder(order);
 		return new ResponseEntity<Orders>(addedOrder, HttpStatus.ACCEPTED);
@@ -44,7 +44,7 @@ public class OrderController {
 	}
 
 	@PutMapping("/orders/{id}")
-	public ResponseEntity<Orders> updateOrder(@PathVariable long id, @Validated @RequestBody Orders order) {
+	public ResponseEntity<Orders> updateOrder(@PathVariable long id, @RequestBody Orders order) {
 		LOGGER.info("EOrder updateOrder()");
 		Orders updatedOrder = orderService.updateOrder(id, order);
 		return new ResponseEntity<Orders>(updatedOrder, HttpStatus.OK);

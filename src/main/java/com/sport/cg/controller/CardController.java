@@ -31,7 +31,7 @@ public class CardController {
 
 
 	@PostMapping("/cards")
-	public ResponseEntity<Card> addCard(@Validated @RequestBody Card card) {
+	public ResponseEntity<Card> addCard(@RequestBody Card card) {
 		LOGGER.info("Called POST mapping addCard() method");
 		return new ResponseEntity<Card>(cardService.addCard(card), HttpStatus.CREATED);
 	}
@@ -46,7 +46,7 @@ public class CardController {
 	
 	
 	@PutMapping("/cards/{id}")
-	public ResponseEntity<Card> updateCard(@PathVariable long id, @Validated @RequestBody Card card) {
+	public ResponseEntity<Card> updateCard(@PathVariable long id, @RequestBody Card card) {
 		LOGGER.info("Called PUT mapping updateCard() method");
 		Card updatable = cardService.updateCard(id, card);
 		return new ResponseEntity<Card>(updatable, HttpStatus.ACCEPTED);

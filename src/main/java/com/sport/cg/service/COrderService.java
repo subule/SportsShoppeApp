@@ -22,14 +22,12 @@ public class COrderService implements IOrderService{
 	private static final Logger LOGGER = LoggerFactory.getLogger(COrderService.class);
 
 	@Override
-	@Transactional
 	public Orders addOrder(Orders order) {
 		LOGGER.info("EOrder addOrder()");
 		return orderRepository.save(order);
 	}
 
 	@Override
-	@Transactional
 	public Orders removeOrder(Long id) {
 		LOGGER.info("Orders removeOrder()");
 		Optional<Orders> removedOrder = orderRepository.findById(id);
@@ -44,7 +42,6 @@ public class COrderService implements IOrderService{
 	}
 
 	@Override
-	@Transactional
 	public Orders updateOrder(Long id, Orders order) {
 		LOGGER.info("EOrder updateOrder()");
 		Optional<Orders> updatedOrder = orderRepository.findById(id);
@@ -57,7 +54,6 @@ public class COrderService implements IOrderService{
 	}
 
 	@Override
-	@Transactional
 	public Orders getOrderDetails(Long id) {
 		LOGGER.info("EOrder getOrderDetails()");
 		Optional<Orders> orderById = orderRepository.findById(id) ;
@@ -71,7 +67,6 @@ public class COrderService implements IOrderService{
 	}
 
 	@Override
-	@Transactional
 	public List<Orders> getAllOrders() {
 		LOGGER.info("EOrder getAllOrders()");
 		List<Orders> allOrders = orderRepository.findAll();
